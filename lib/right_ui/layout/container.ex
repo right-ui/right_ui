@@ -5,17 +5,14 @@ defmodule RightUI.Layout.Container do
     assigns =
       assigns
       |> attr(:class, :string)
+      # add padding from which breakpoint
       |> attr(:padding, :enum, values: [:always, :sm], default: :sm)
       |> attr(:breakpoint, :boolean, default: false)
       |> attr(:extra, :rest, exclude: [:class, :padding, :breakpoint])
 
     ~H"""
     <div
-      class={
-        @breakpoint
-        |> container_class()
-        |> merge_class(@class)
-      }
+      class={merge_class(container_class(@breakpoint), @class)}
       {@extra}
     >
       <div class={padding_class(@padding)}>
@@ -25,8 +22,8 @@ defmodule RightUI.Layout.Container do
     """
   end
 
-  def container_class(true), do: "container max-w-7xl mx-auto"
-  def container_class(false), do: "max-w-7xl mx-auto"
+  def container_class(true), do: "container mx-auto"
+  def container_class(false), do: "mx-auto"
 
   def padding_class(:always), do: "px-4 sm:px-6 lg:px-8"
   def padding_class(:sm), do: "sm:px-6 lg:px-8"
