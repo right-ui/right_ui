@@ -15,7 +15,6 @@ defmodule RightUI.Helper do
       assigns
       |> attr(:class, :string)
       |> attr(:extra, :rest, exclude: [:class])
-      |> extend_class("text-red-500")
 
     ~H\"\"\"
     <button class={@class} {@extra}>
@@ -121,11 +120,15 @@ defmodule RightUI.Helper do
   @doc """
   """
   def merge_class(old, new) do
-    merge_as_simple_value(old, new)
+    merge_as_simple_value([old, new])
   end
 
-  defp merge_as_simple_value(default, new) do
-    [default, new]
+  def merge_class(list) do
+    merge_as_simple_value(list)
+  end
+
+  defp merge_as_simple_value(list) when is_list(list) do
+    list
     |> Enum.join(" ")
     |> String.trim()
   end

@@ -33,6 +33,7 @@ defmodule RightUI do
   defmacro __using__(_) do
     quote do
       use RightUI.Layout
+      use RightUI.List
     end
   end
 end
