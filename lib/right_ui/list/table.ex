@@ -27,7 +27,7 @@ defmodule RightUI.List.Table do
       |> attr(:extra, :rest, exclude: [:class])
 
     ~H"""
-    <thead class={merge_class("bg-gray-50", @class)} {@extra}>
+    <thead class={merge_class(["bg-gray-50", @class])} {@extra}>
       <%= render_slot(@inner_block) %>
     </thead>
     """
@@ -75,7 +75,9 @@ defmodule RightUI.List.Table do
       |> attr(:extra, :rest, exclude: [:class, :position])
 
     ~H"""
-    <th scope="col" class={
+    <th
+      scope="col"
+      class={
         merge_class([
           th_padding_class(@position),
           "text-left text-sm font-semibold text-gray-900",
@@ -103,7 +105,8 @@ defmodule RightUI.List.Table do
       |> attr(:extra, :rest, exclude: [:class, :position])
 
     ~H"""
-    <td class={
+    <td
+      class={
         merge_class([
           td_padding_class(@position),
           "whitespace-nowrap text-sm text-gray-500",

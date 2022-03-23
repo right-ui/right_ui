@@ -5,26 +5,42 @@ defmodule RightUI.Layout.Container do
     assigns =
       assigns
       |> attr(:class, :string)
-      # add padding from which breakpoint
-      |> attr(:padding, :enum, values: [:always, :sm], default: :sm)
-      |> attr(:reverse, :boolean, default: false)
+      |> attr(:center, :boolean, default: true)
       |> attr(:breakpoint, :boolean, default: false)
+      # add padding from which breakpoint
+      |> attr(:padding, :enum, values: [:always, :sm], default: :always)
+      |> attr(:reverse, :boolean, default: false)
       |> attr(:extra, :rest, exclude: [:class, :padding, :reverse, :breakpoint])
 
     ~H"""
     <div
-      class={merge_class(container_class(@breakpoint), @class)}
+      class={
+        merge_class([
+          center_class(@breakpoint),
+          breakpoint_class(@breakpoint)
+        ])
+      }
       {@extra}
     >
-      <div class={padding_class(@padding, @reverse)}>
+      <div
+        class={
+          merge_class([
+            padding_class(@padding, @reverse),
+            @class
+          ])
+        }
+      >
         <%= render_slot(@inner_block) %>
       </div>
     </div>
     """
   end
 
-  def container_class(true), do: "container mx-auto"
-  def container_class(false), do: "mx-auto"
+  def center_class(true), do: "mx-auto"
+  def center_class(false), do: ""
+
+  def breakpoint_class(true), do: "container"
+  def breakpoint_class(false), do: ""
 
   def padding_class(:always, false), do: "px-4 sm:px-6 lg:px-8"
   def padding_class(:always, true), do: "-mx-4 sm:-mx-6 lg:-mx-8"
