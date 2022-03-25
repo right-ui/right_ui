@@ -1,6 +1,30 @@
+defmodule RightUI.AttrError do
+  defexception [:message]
+
+  @impl true
+  def exception({:required, name}) do
+    message = "attr #{inspect(name)} is required"
+    %__MODULE__{message: message}
+  end
+
+  @impl true
+  def exception({:bad_type, name, type}) do
+    message = "the value of attr #{inspect(name)} should be of type #{inspect(type)}"
+    %__MODULE__{message: message}
+  end
+
+  @impl true
+  def exception({:bad_enum_value, name, values}) do
+    message = "the value of attr #{inspect(name)} should be one of #{inspect(values)}"
+    %__MODULE__{message: message}
+  end
+end
+
 defmodule RightUI.Helper do
   import Phoenix.LiveView, only: [assign: 3, assign_new: 3]
   import Phoenix.LiveView.Helpers, only: [assigns_to_attributes: 2]
+
+  alias RightUI.AttrError
 
   @doc """
   Emulate the official API which is coming soon.
@@ -54,7 +78,7 @@ defmodule RightUI.Helper do
         if Map.has_key?(assigns, name) do
           assigns
         else
-          raise ArgumentError, "attribute #{inspect(name)} is required"
+          raise AttrError, {:required, name}
         end
       else
         assign_new(assigns, name, fn -> default end)
@@ -74,8 +98,7 @@ defmodule RightUI.Helper do
           if value in values do
             assigns
           else
-            raise ArgumentError,
-                  "the value of attribute #{inspect(name)} should be one of #{inspect(values)}"
+            raise AttrError, {:bad_enum_value, name, values}
           end
 
         :slot ->
@@ -84,8 +107,7 @@ defmodule RightUI.Helper do
           if is_slot(value) do
             assigns
           else
-            raise ArgumentError,
-                  "the value of attribute #{inspect(name)} should be of type #{inspect(type)}"
+            raise AttrError, {:bad_type, name, type}
           end
 
         :any ->
@@ -97,8 +119,7 @@ defmodule RightUI.Helper do
           if type_of(value) == expected_type do
             assigns
           else
-            raise ArgumentError,
-                  "the value of attribute #{inspect(name)} should be of type #{inspect(type)}"
+            raise AttrError, {:bad_type, name, type}
           end
       end
 
