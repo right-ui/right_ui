@@ -63,7 +63,7 @@ defmodule RightUI.Helper do
       case type do
         :rest ->
           excluded_keys = Keyword.fetch!(opts, :exclude)
-          rest = assigns_to_attributes(assigns, excluded_keys)
+          rest = assigns_to_attributes(assigns, [name | excluded_keys])
           assign(assigns, name, rest)
 
         :enum ->
