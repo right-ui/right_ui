@@ -32,6 +32,7 @@ defmodule RightUI.Helper do
   + `:boolean`
   + `:atom`
   + `:string`
+  + `:slot`
   + `:any`
   + `:enum` with `:values` option
   + `:rest` with `:exclude` option
@@ -77,6 +78,16 @@ defmodule RightUI.Helper do
                   "the value of attribute #{inspect(name)} should be one of #{inspect(values)}"
           end
 
+        :slot ->
+          value = Map.get(assigns, name)
+
+          if is_slot(value) do
+            assigns
+          else
+            raise ArgumentError,
+                  "the value of attribute #{inspect(name)} should be of type #{inspect(type)}"
+          end
+
         :any ->
           assigns
 
@@ -86,7 +97,8 @@ defmodule RightUI.Helper do
           if type_of(value) == expected_type do
             assigns
           else
-            raise ArgumentError, "attribute #{inspect(name)} should be #{inspect(type)}"
+            raise ArgumentError,
+                  "the value of attribute #{inspect(name)} should be of type #{inspect(type)}"
           end
       end
 
@@ -105,6 +117,10 @@ defmodule RightUI.Helper do
       true -> :unknown
     end
   end
+
+  defp is_slot([%{__slot__: _} | []]), do: true
+  defp is_slot([%{__slot__: _} | _]), do: true
+  defp is_slot(_), do: false
 
   defp default_of(type) do
     case type do
