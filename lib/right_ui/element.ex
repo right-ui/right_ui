@@ -2,7 +2,8 @@ defmodule RightUI.Element do
   defmacro __using__(_) do
     quote do
       import RightUI.Element.{
-        Button
+        Button,
+        Link
       }
     end
   end

@@ -1,9 +1,9 @@
-defmodule RightUI.Link do
+defmodule RightUI.Element.Link do
   use RightUI, :component
 
   defmacro __using__(_) do
     quote do
-      import RightUI.Link, only: [link: 1]
+      import RightUI.Element.Link, only: [link: 1]
     end
   end
 
