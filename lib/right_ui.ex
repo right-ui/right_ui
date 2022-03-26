@@ -32,6 +32,7 @@ defmodule RightUI do
 
   defmacro __using__(_) do
     quote do
+      use RightUI.Element
       use RightUI.Link
 
       use RightUI.Layout
