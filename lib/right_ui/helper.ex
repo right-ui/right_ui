@@ -26,6 +26,8 @@ defmodule RightUI.Helper do
 
   alias RightUI.AttrError
 
+  @key_for_excluded_keys :__excluded_keys__
+
   @doc """
   Emulate the official API which is coming soon.
 
@@ -38,7 +40,8 @@ defmodule RightUI.Helper do
     assigns =
       assigns
       |> attr(:class, :string)
-      |> attr(:extra, :rest, exclude: [:class])
+      |> attr(:extra, :rest)
+      |> attr_done()
 
     ~H\"\"\"
     <button class={@class} {@extra}>
@@ -84,11 +87,20 @@ defmodule RightUI.Helper do
         assign_new(assigns, name, fn -> default end)
       end
 
+    assigns = set_excluded_key(assigns, name)
+
     assigns =
       case type do
         :rest ->
-          excluded_keys = Keyword.fetch!(opts, :exclude)
-          rest = assigns_to_attributes(assigns, [name | excluded_keys])
+          excluded_keys =
+            if manual_excluded_keys = Keyword.get(opts, :exclude) do
+              excluded_keys = [@key_for_excluded_keys | manual_excluded_keys]
+              [name | excluded_keys]
+            else
+              get_excluded_keys(assigns)
+            end
+
+          rest = assigns_to_attributes(assigns, excluded_keys)
           assign(assigns, name, rest)
 
         :enum ->
@@ -124,6 +136,23 @@ defmodule RightUI.Helper do
       end
 
     assigns
+  end
+
+  def attr_done(assigns) do
+    clean_excluded_keys(assigns)
+  end
+
+  defp set_excluded_key(assigns, name) do
+    excluded_keys = get_excluded_keys(assigns)
+    Map.put(assigns, @key_for_excluded_keys, [name | excluded_keys])
+  end
+
+  defp get_excluded_keys(assigns) do
+    Map.get(assigns, @key_for_excluded_keys, [@key_for_excluded_keys])
+  end
+
+  defp clean_excluded_keys(assigns) do
+    Map.delete(assigns, @key_for_excluded_keys)
   end
 
   defp type_of(nil), do: :missing
