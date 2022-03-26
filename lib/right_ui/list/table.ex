@@ -1,11 +1,27 @@
 defmodule RightUI.List.Table do
   use RightUI, :component
 
+  defmacro __using__(_) do
+    quote do
+      import RightUI.List.Table,
+        only: [
+          table: 1,
+          thead: 1,
+          tbody: 1,
+          tr: 1,
+          th: 1,
+          td: 1
+        ]
+    end
+  end
+
   def table(assigns) do
     assigns =
       assigns
       |> attr(:class, :string)
-      |> attr(:extra, :rest, exclude: [:class])
+      |> attr(:inner_block, :slot, required: true)
+      |> attr(:extra, :rest)
+      |> attr_done()
 
     ~H"""
     <div class="-my-2 overflow-x-auto">
@@ -24,7 +40,9 @@ defmodule RightUI.List.Table do
     assigns =
       assigns
       |> attr(:class, :string)
-      |> attr(:extra, :rest, exclude: [:class])
+      |> attr(:inner_block, :slot, required: true)
+      |> attr(:extra, :rest)
+      |> attr_done()
 
     ~H"""
     <thead class={merge_class(["bg-gray-50", @class])} {@extra}>
@@ -38,7 +56,9 @@ defmodule RightUI.List.Table do
       assigns
       |> attr(:class, :string)
       |> attr(:divide, :boolean, default: true)
-      |> attr(:extra, :rest, exclude: [:class, :divide])
+      |> attr(:inner_block, :slot, required: true)
+      |> attr(:extra, :rest)
+      |> attr_done()
 
     ~H"""
     <tbody class={merge_class([tbody_class(@divide), "bg-white", @class])} {@extra}>
@@ -47,15 +67,17 @@ defmodule RightUI.List.Table do
     """
   end
 
-  def tbody_class(true), do: "divide-y divide-gray-200"
-  def tbody_class(false), do: ""
+  defp tbody_class(true), do: "divide-y divide-gray-200"
+  defp tbody_class(false), do: ""
 
   def tr(assigns) do
     assigns =
       assigns
       |> attr(:class, :string)
       |> attr(:striped, :boolean, default: false)
-      |> attr(:extra, :rest, exclude: [:class, :striped])
+      |> attr(:inner_block, :slot, required: true)
+      |> attr(:extra, :rest)
+      |> attr_done()
 
     ~H"""
     <tr class={merge_class(tr_class(@striped), @class)} {@extra}>
@@ -64,65 +86,65 @@ defmodule RightUI.List.Table do
     """
   end
 
-  def tr_class(true), do: "even:bg-gray-50"
-  def tr_class(false), do: ""
+  defp tr_class(true), do: "even:bg-gray-50"
+  defp tr_class(false), do: ""
 
   def th(assigns) do
     assigns =
       assigns
       |> attr(:class, :string)
-      |> attr(:position, :enum, values: [:first, :mid, :last], default: :mid)
-      |> attr(:extra, :rest, exclude: [:class, :position])
+      |> attr(:position, :enum, values: ["first", "mid", "last"], default: "mid")
+      |> attr(:inner_block, :slot, required: true)
+      |> attr(:extra, :rest)
+      |> attr_done()
 
     ~H"""
     <th
       scope="col"
       class={
         merge_class([
-          th_padding_class(@position),
+          th_class_padding(@position),
           "text-left text-sm font-semibold text-gray-900",
           @class
         ])
       }
       {@extra}
     >
-      <%= if @inner_block do %>
-        <%= render_slot(@inner_block) %>
-      <% end %>
+      <%= render_slot(@inner_block) %>
     </th>
     """
   end
 
-  def th_padding_class(:first), do: "pl-4 pr-3 sm:pl-6 py-3.5"
-  def th_padding_class(:mid), do: "px-3 py-3.5"
-  def th_padding_class(:last), do: "pl-3 pr-4 sm:pr-6 py-3.5"
+  defp th_class_padding("first"), do: "pl-4 pr-3 sm:pl-6 py-3.5"
+  defp th_class_padding("mid"), do: "px-3 py-3.5"
+  defp th_class_padding("last"), do: "pl-3 pr-4 sm:pr-6 py-3.5"
 
   def td(assigns) do
     assigns =
       assigns
       |> attr(:class, :string)
-      |> attr(:position, :enum, values: [:first, :mid, :last], default: :mid)
-      |> attr(:extra, :rest, exclude: [:class, :position])
+      |> attr(:position, :enum, values: ["first", "mid", "last"], default: "mid")
+      |> attr(:inner_block, :slot, required: true)
+      |> attr(:extra, :rest)
+      |> attr_done()
 
     ~H"""
     <td
       class={
         merge_class([
-          td_padding_class(@position),
+          td_class_padding(@position),
           "whitespace-nowrap text-sm text-gray-500",
           @class
         ])
       }
       {@extra}
     >
-      <%= if @inner_block do %>
-        <%= render_slot(@inner_block) %>
-      <% end %>
+      <%= render_slot(@inner_block) %>
     </td>
     """
   end
 
-  def td_padding_class(:first), do: "pl-4 pr-3 sm:pl-6 py-4"
-  def td_padding_class(:mid), do: "px-3 py-4"
-  def td_padding_class(:last), do: "pl-3 pr-4 sm:pr-6 py-4"
+  defp td_class_padding("first"), do: "pl-4 pr-3 sm:pl-6 py-4"
+  defp td_class_padding("mid"), do: "px-3 py-4"
+  defp td_class_padding("last"), do: "pl-3 pr-4 sm:pr-6 py-4"
 end

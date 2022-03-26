@@ -1,7 +1,7 @@
 defmodule RightUI.Layout do
   defmacro __using__(_) do
     quote do
-      import RightUI.Layout.{
+      use RightUI.Layout.{
         Container
       }
     end

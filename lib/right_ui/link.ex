@@ -14,7 +14,8 @@ defmodule RightUI.Link do
       |> attr(:to, :string, required: true)
       |> attr(:class, :string)
       |> attr(:inner_block, :slot, required: true)
-      |> attr(:extra, :rest, exclude: [:type, :to, :class, :inner_block])
+      |> attr(:extra, :rest)
+      |> attr_done()
 
     ~H"""
     <%= apply(link_function(@type), [
@@ -25,6 +26,6 @@ defmodule RightUI.Link do
   end
 
   defp link_function("a"), do: &Phoenix.HTML.Link.link/2
-  defp link_function("live_path"), do: &live_patch/2
+  defp link_function("live_patch"), do: &live_patch/2
   defp link_function("live_redirect"), do: &live_redirect/2
 end
