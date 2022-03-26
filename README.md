@@ -23,3 +23,7 @@ use RightUI, :component
 ```elixir
 use RightUI, :live_component
 ```
+
+## About the design
+
+- every module uses `__using__/1` for describing what it exposes.
