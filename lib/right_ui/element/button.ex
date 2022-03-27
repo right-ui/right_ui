@@ -64,11 +64,11 @@ defmodule RightUI.Element.Button do
   defp class_text("lg"), do: "font-medium text-base"
   defp class_text("xl"), do: "font-medium text-base"
 
-  defp class_border("xs"), do: "border border-transparent rounded shadow-sm"
-  defp class_border("sm"), do: "border border-transparent rounded-md shadow-sm"
-  defp class_border("md"), do: "border border-transparent rounded-md shadow-sm"
-  defp class_border("lg"), do: "border border-transparent rounded-md shadow-sm"
-  defp class_border("xl"), do: "border border-transparent rounded-md shadow-sm"
+  defp class_border("xs"), do: "border rounded shadow-sm"
+  defp class_border("sm"), do: "border rounded-md shadow-sm"
+  defp class_border("md"), do: "border rounded-md shadow-sm"
+  defp class_border("lg"), do: "border rounded-md shadow-sm"
+  defp class_border("xl"), do: "border rounded-md shadow-sm"
 
   defp class_hover(_), do: ""
 
@@ -94,7 +94,7 @@ defmodule RightUI.Element.Button do
 
       _ ->
         """
-        text-white bg-primary-700
+        text-white bg-primary-700 border-transparent
         hover:bg-primary-600
         active:bg-primary-700
         focus:ring-primary-500/30
@@ -122,7 +122,7 @@ defmodule RightUI.Element.Button do
 
       _ ->
         """
-        text-white bg-neutral-700
+        text-white bg-neutral-700 border-transparent
         hover:bg-neutral-600
         active:bg-neutral-700
         focus:ring-neutral-500/30
@@ -150,7 +150,7 @@ defmodule RightUI.Element.Button do
 
       _ ->
         """
-        text-white bg-info-700
+        text-white bg-info-700 border-transparent
         hover:bg-info-600
         active:bg-info-700
         focus:ring-info-500/30
@@ -178,7 +178,7 @@ defmodule RightUI.Element.Button do
 
       _ ->
         """
-        text-white bg-success-700
+        text-white bg-success-700 border-transparent
         hover:bg-success-600
         active:bg-success-700
         focus:ring-success-500/30
@@ -206,7 +206,7 @@ defmodule RightUI.Element.Button do
 
       _ ->
         """
-        text-white bg-warning-700
+        text-white bg-warning-700 border-transparent
         hover:bg-warning-600
         active:bg-warning-700
         focus:ring-warning-500/30
@@ -234,7 +234,7 @@ defmodule RightUI.Element.Button do
 
       _ ->
         """
-        text-white bg-danger-700
+        text-white bg-danger-700 border-transparent
         hover:bg-danger-600
         active:bg-danger-700
         focus:ring-danger-500/30
