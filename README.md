@@ -28,7 +28,7 @@ Before, I had [an idea about how to declare attributes for components](https://g
 
 This library is a possible implementation of that idea.
 
-### Types
+### Component Types
 
 #### Basic components
 
@@ -43,6 +43,11 @@ This library is a possible implementation of that idea.
 
 - navigation
 - ...
+
+### Attr Names
+
+- the name of a `:function` attr should be prefixed with `fn_`.
+- the name of a `:rest` attr should be `extra`.
 
 ### How to expose component
 
