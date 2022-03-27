@@ -54,8 +54,8 @@ defmodule RightUI.List.Table do
   def tbody(assigns) do
     assigns =
       assigns
-      |> attr(:class, :string)
       |> attr(:divide, :boolean, default: true)
+      |> attr(:class, :string)
       |> attr(:inner_block, :slot, required: true)
       |> attr(:extra, :rest)
       |> attr_done()
@@ -73,8 +73,8 @@ defmodule RightUI.List.Table do
   def tr(assigns) do
     assigns =
       assigns
-      |> attr(:class, :string)
       |> attr(:striped, :boolean, default: false)
+      |> attr(:class, :string)
       |> attr(:inner_block, :slot, required: true)
       |> attr(:extra, :rest)
       |> attr_done()
@@ -92,8 +92,8 @@ defmodule RightUI.List.Table do
   def th(assigns) do
     assigns =
       assigns
-      |> attr(:class, :string)
       |> attr(:position, :enum, values: ["first", "mid", "last"], default: "mid")
+      |> attr(:class, :string)
       |> attr(:inner_block, :slot, required: true)
       |> attr(:extra, :rest)
       |> attr_done()
@@ -122,8 +122,8 @@ defmodule RightUI.List.Table do
   def td(assigns) do
     assigns =
       assigns
-      |> attr(:class, :string)
       |> attr(:position, :enum, values: ["first", "mid", "last"], default: "mid")
+      |> attr(:class, :string)
       |> attr(:inner_block, :slot, required: true)
       |> attr(:extra, :rest)
       |> attr_done()

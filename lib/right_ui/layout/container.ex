@@ -10,11 +10,11 @@ defmodule RightUI.Layout.Container do
   def container(assigns) do
     assigns =
       assigns
-      |> attr(:class, :string)
       |> attr(:breakpoint, :boolean, default: false)
       |> attr(:padding_from, :enum, values: ["xs", "sm"], default: "xs")
       |> attr(:reverse, :boolean, default: false)
       |> attr(:inner_block, :slot, required: true)
+      |> attr(:class, :string)
       |> attr(:extra, :rest)
       |> attr_done()
 

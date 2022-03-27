@@ -48,6 +48,11 @@ This library is a possible implementation of that idea.
 
 - the name of a `:function` attr should be prefixed with `fn_`.
 - the name of a `:rest` attr should be `extra`.
+- the normal attrs should be placed at the end of list of attrs. For example:
+  - component-specified attrs
+  - `class`
+  - `inner_block`
+  - `extra`
 
 ### How to expose component
 

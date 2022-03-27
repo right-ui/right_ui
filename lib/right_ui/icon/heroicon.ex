@@ -13,8 +13,8 @@ defmodule RightUI.Icon.HeroIcon do
     assigns =
       assigns
       |> attr(:name, :string, required: true)
-      |> attr(:class, :string)
       |> attr(:enable_default_size, :boolean, default: true)
+      |> attr(:class, :string)
       |> attr(:extra, :rest)
       |> attr_done()
 
