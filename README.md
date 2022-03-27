@@ -2,6 +2,9 @@
 
 A simple component library for [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view).
 
+> - Not ready for production use.
+> - API changes very frequently.
+
 ## Usage
 
 Add `RightUI` to your view helpers:
