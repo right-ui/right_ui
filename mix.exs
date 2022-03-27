@@ -23,7 +23,8 @@ defmodule RightUI.MixProject do
   defp deps do
     [
       {:phoenix_live_view,
-       github: "phoenixframework/phoenix_live_view", ref: "e9d41cb", override: true}
+       github: "phoenixframework/phoenix_live_view", ref: "e9d41cb", override: true},
+      {:adept_svg, "~> 0.3.1"}
     ]
   end
 
