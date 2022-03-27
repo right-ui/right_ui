@@ -199,6 +199,15 @@ defmodule RightUI.Helper do
     |> String.trim()
   end
 
+  @doc """
+  Remove whitespaces from a class string.
+  """
+  def one_line_class(class) do
+    class
+    |> String.split(~r/\s+/)
+    |> Enum.join(" ")
+  end
+
   # # Currently, this isn't work as expected, I will handle it later.
   # #
   # # If the default class is `text-sm text-gray-200`, the new is `text-red-200`,
