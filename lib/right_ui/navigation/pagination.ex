@@ -124,7 +124,7 @@ defmodule RightUI.Navigation.Pagination do
   @class_simple one_line_class("""
                 bg-white
                 border-neutral-300
-                text-gray-700 hover:bg-neutral-50
+                text-neutral-700 hover:bg-neutral-50
                 rounded-md
                 """)
 

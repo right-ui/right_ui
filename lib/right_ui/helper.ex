@@ -212,7 +212,7 @@ defmodule RightUI.Helper do
 
   # # Currently, this isn't work as expected, I will handle it later.
   # #
-  # # If the default class is `text-sm text-gray-200`, the new is `text-red-200`,
+  # # If the default class is `text-sm text-neutral-200`, the new is `text-red-200`,
   # # then the final class is `text-red-200`.
   # # As you can see, `text-sm` is removed, which isn't expected.
   # defp merge_as_tailwind_class(default, new) do

@@ -27,7 +27,7 @@ defmodule RightUI.List.Table do
     <div class="-my-2 overflow-x-auto">
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
         <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-          <table class="min-w-full divide-y divide-gray-300">
+          <table class="min-w-full divide-y divide-neutral-300">
             <%= render_slot(@inner_block) %>
           </table>
         </div>
@@ -45,7 +45,7 @@ defmodule RightUI.List.Table do
       |> attr_done()
 
     ~H"""
-    <thead class={merge_class(["bg-gray-50", @class])} {@extra}>
+    <thead class={merge_class(["bg-neutral-50", @class])} {@extra}>
       <%= render_slot(@inner_block) %>
     </thead>
     """
@@ -67,7 +67,7 @@ defmodule RightUI.List.Table do
     """
   end
 
-  defp tbody_class(true), do: "divide-y divide-gray-200"
+  defp tbody_class(true), do: "divide-y divide-neutral-200"
   defp tbody_class(false), do: ""
 
   def tr(assigns) do
@@ -86,7 +86,7 @@ defmodule RightUI.List.Table do
     """
   end
 
-  defp tr_class(true), do: "even:bg-gray-50"
+  defp tr_class(true), do: "even:bg-neutral-50"
   defp tr_class(false), do: ""
 
   def th(assigns) do
@@ -104,7 +104,7 @@ defmodule RightUI.List.Table do
       class={
         merge_class([
           th_class_padding(@position),
-          "text-left text-sm font-semibold text-gray-900",
+          "text-left text-sm font-semibold text-neutral-900",
           @class
         ])
       }
@@ -133,7 +133,7 @@ defmodule RightUI.List.Table do
       class={
         merge_class([
           td_class_padding(@position),
-          "whitespace-nowrap text-sm text-gray-500",
+          "whitespace-nowrap text-sm text-neutral-500",
           @class
         ])
       }
