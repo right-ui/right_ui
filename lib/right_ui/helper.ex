@@ -59,10 +59,11 @@ defmodule RightUI.Helper do
   + `:boolean`
   + `:atom`
   + `:string`
+  + `:function`
   + `:slot`
-  + `:any`
   + `:enum` with `:values` option
   + `:rest` with `:exclude` option
+  + `:any`
 
   ## Options
 
@@ -164,6 +165,7 @@ defmodule RightUI.Helper do
       is_number(term) -> :number
       is_boolean(term) -> :boolean
       is_binary(term) -> :string
+      is_function(term) -> :function
       true -> :unknown
     end
   end
