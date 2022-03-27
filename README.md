@@ -1,10 +1,6 @@
 # RightUI
 
-Built on:
-
-- [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view)
-- [TailwindCSS](https://tailwindcss.com/)
-- [TailwindUI](https://tailwindui.com/)
+A simple component library for [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view).
 
 ## Usage
 
@@ -26,10 +22,43 @@ use RightUI, :live_component
 
 ## About the design
 
+### Emulate the coming API
+
+Before, I had [an idea about how to declare attributes for components](https://github.com/petalframework/petal_components/issues/27).
+
+This library is a possible implementation of that idea.
+
+### Types
+
+#### Basic components
+
+> These components do not cross-call each other.
+
+- element
+- icon
+
+#### High-order components
+
+> These components are built on the basic components.
+
+- navigation
+- ...
+
+### How to expose component
+
 - every module uses `__using__/1` for describing what it exposes.
 
-## Plan
+## Acknowledgements
 
-- modal
-- notification
-- form
+Inspired by:
+
+- [Petal Components](https://github.com/petalframework/petal_components)
+- [MUI](https://mui.com/)
+
+Built on:
+
+- [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view)
+- [TailwindCSS](https://tailwindcss.com/)
+- [TailwindUI](https://tailwindui.com/)
+- [Adept.Svg](https://github.com/adept-bits/adept_svg)
+- [Heroicons](https://heroicons.com/)
