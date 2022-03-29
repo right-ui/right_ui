@@ -7,11 +7,15 @@ A simple component library for [Phoenix LiveView](https://github.com/phoenixfram
 
 ## Usage
 
+### Use existing components
+
 Add `RightUI` to your view helpers:
 
 ```elixir
 use RightUI
 ```
+
+### Build new components
 
 Build component or live component based on `RightUI.Helper`:
 
