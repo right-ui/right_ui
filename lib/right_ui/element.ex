@@ -3,7 +3,8 @@ defmodule RightUI.Element do
     quote do
       import RightUI.Element.{
         Button,
-        Link
+        Link,
+        Form
       }
     end
   end
