@@ -23,17 +23,7 @@ defmodule RightUI.Element.Form do
 
   ### from `Phoenix.HTML.Form`
 
-  + error
-  + time
-  + datetime_local
-  + textarea
-  + file
-  + submit
-  + reset
-  + radio button
-  + checkbox
-  + select
-  + multiple_select
+  + radio_button
   + time_select
   + date_select
   + datetime_select
@@ -56,33 +46,36 @@ defmodule RightUI.Element.Form do
       humanize: 1
     ]
 
-  # https://github.com/phoenixframework/phoenix_html/blob/082c785f0487098d6099ae254c502c5e7a6187e3/lib/phoenix_html/form.ex#L843
-  defp maybe_html_escape(nil), do: nil
-  # html_escape(value)
-  defp maybe_html_escape(value), do: value
+  @generic_inputs [
+    :text_input,
+    :email_input,
+    :number_input,
+    :password_input,
+    :url_input,
+    :search_input,
+    :telephone_input,
+    :color_input,
+    :range_input,
+    :time_input,
+    :date_input,
+    :datetime_local_input,
+    :textarea,
+    :file_input,
+    :checkbox
+  ]
 
-  @generic_inputs ~w(
-    text
-    email
-    number
-    url
-    search
-    telephone
-    color
-    range
-    date
-  )a
+  @select_inputs [
+    :select,
+    :multiple_select
+  ]
 
   defmacro __using__(_) do
     quote do
       import RightUI.Element.Form,
         only:
-          unquote(
-            [input_label: 1] ++
-              Enum.map(@generic_inputs, &{:"#{&1}_input", 1}) ++
-              [password_input: 1] ++
-              [form_field: 1]
-          )
+          [input_label: 1, error: 1] ++
+            Enum.map(@generic_inputs, &{&1, 1}) ++
+            Enum.map(@select_inputs, &{&1, 1})
     end
   end
 
@@ -146,7 +139,7 @@ defmodule RightUI.Element.Form do
       )
       |> attr(:name, :string, default: input_name(assigns.form, assigns.field))
       |> attr(:class, :string)
-      |> attr(:inner_block, :slot)
+      |> attr(:inner_block, :any)
       |> attr(:extra, :rest)
       |> attr_done()
 
@@ -168,78 +161,72 @@ defmodule RightUI.Element.Form do
 
   ## Examples
 
-      <.input type="text" form={@form} field={:name} value={@name} />
+      <.text_input form={@form} field={:name} />
 
   """
-
-  Enum.each(@generic_inputs, fn type ->
-    def unquote(:"#{type}_input")(assigns) do
-      assigns =
-        assigns
-        |> attr(:form, :any, required: true)
-        |> attr(:field, :any, required: true)
-        |> attr(:id, :string, default: input_id(assigns.form, assigns.field))
-        |> attr(:name, :string, default: input_name(assigns.form, assigns.field))
-        |> attr(:value, :any, default: input_value(assigns.form, assigns.field))
-        |> attr(:class, :string)
-        |> attr(:extra, :rest)
-        |> attr_done()
-        |> assign(:type, unquote(type))
-
-      render_generic_input(assigns)
+  Enum.map(@generic_inputs, fn type ->
+    def unquote(type)(assigns) do
+      render_generic_input(unquote(type), assigns)
     end
   end)
 
-  defp render_generic_input(assigns) do
-    ~H"""
-    <input
-      class={
-        merge_class([
-          @class,
-          class_default(@type),
-          class_form_error(@form, @field)
-        ])
-      }
-      type={@type}
-      id={@id}
-      name={@name}
-      value={maybe_html_escape(@value)}
-      phx-feedback-for={@name}
-      {@extra}
-    />
-    """
-  end
-
-  # For security reasons, the form data and parameter values
-  # are never re-used in `password` type of input . Pass the value
-  # explicitly if you would like to set one.
-  def password_input(assigns) do
+  defp render_generic_input(type, assigns) do
     assigns =
       assigns
       |> attr(:form, :any, required: true)
       |> attr(:field, :any, required: true)
-      |> attr(:id, :string, default: input_id(assigns.form, assigns.field))
-      |> attr(:name, :string, default: input_name(assigns.form, assigns.field))
       |> attr(:class, :string)
       |> attr(:extra, :rest)
       |> attr_done()
-      |> assign(:type, :password)
 
     ~H"""
-    <input
-      class={
-        merge_class([
-          @class,
-          class_default(@type),
-          class_form_error(@form, @field)
-        ])
-      }
-      type={@type}
-      id={@id}
-      name={@name}
-      phx-feedback-for={@name}
-      {@extra}
-    />
+    <%= apply(Phoenix.HTML.Form, type, [
+      @form,
+      @field,
+      [
+        class:
+          merge_class([
+            class_default(type),
+            class_form_error(@form, @field),
+            @class
+          ]),
+        phx_feedback_for: input_name(@form, @field)
+      ] ++ @extra
+    ]) %>
+    """
+  end
+
+  Enum.map(@select_inputs, fn type ->
+    def unquote(type)(assigns) do
+      render_select_input(unquote(type), assigns)
+    end
+  end)
+
+  defp render_select_input(type, assigns) do
+    assigns =
+      assigns
+      |> attr(:form, :any, required: true)
+      |> attr(:field, :any, required: true)
+      |> attr(:options, :any, required: true)
+      |> attr(:class, :string)
+      |> attr(:extra, :rest)
+      |> attr_done()
+
+    ~H"""
+    <%= apply(Phoenix.HTML.Form, type, [
+      @form,
+      @field,
+      @options,
+      [
+        class:
+          merge_class([
+            class_default(type),
+            class_form_error(@form, @field),
+            @class
+          ]),
+        phx_feedback_for: input_name(@form, @field)
+      ] ++ @extra
+    ]) %>
     """
   end
 
@@ -257,9 +244,9 @@ defmodule RightUI.Element.Form do
   defp class_form_error(form, field),
     do: if(has_error?(form, field), do: "phx-form-error", else: "")
 
-  defp class_default(:color), do: merge_class([@class_default, "h-10"])
+  defp class_default(:color_input), do: merge_class([@class_default, "h-10"])
 
-  defp class_default(:file),
+  defp class_default(:file_input),
     do:
       one_line_class("""
       text-sm text-neutral-500
@@ -271,16 +258,13 @@ defmodule RightUI.Element.Form do
       focus:outline-none
       """)
 
-  defp class_default(:range), do: ""
-
-  defp class_default(:select),
-    do: merge_class([@class_default, "pr-9"])
+  defp class_default(:range_input), do: ""
 
   defp class_default(:checkbox),
     do: merge_class([@class_default, "w-4 h-4 px-0 py-0 text-primary-600"])
 
-  defp class_default(:radio_button),
-    do: merge_class([@class_default, "w-4 h-4 px-0 py-0 text-primary-600"])
+  defp class_default(:select),
+    do: merge_class([@class_default, "pr-9"])
 
   defp class_default(_), do: @class_default
 
