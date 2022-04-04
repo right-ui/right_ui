@@ -197,6 +197,7 @@ defmodule RightUI.Helper do
 
   defp merge_as_simple_value(list) when is_list(list) do
     list
+    |> Enum.map(&String.trim/1)
     |> Enum.join(" ")
     |> String.trim()
   end
