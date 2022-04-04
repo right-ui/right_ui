@@ -73,7 +73,7 @@ defmodule RightUI.Element.Form do
     quote do
       import RightUI.Element.Form,
         only:
-          [input_label: 1, error: 1] ++
+          [input_label: 1, error: 1, form_field: 1] ++
             Enum.map(@generic_inputs, &{&1, 1}) ++
             Enum.map(@select_inputs, &{&1, 1})
     end
@@ -315,5 +315,80 @@ defmodule RightUI.Element.Form do
     Enum.reduce(opts, msg, fn {key, value}, acc ->
       String.replace(acc, "%{#{key}}", fn _ -> to_string(value) end)
     end)
+  end
+
+  @doc """
+  A combo of <.input_label>, <.input>, <.error>.
+  """
+  def form_field(assigns) do
+    assigns =
+      assigns
+      |> attr(:type, :string, required: true)
+      |> attr(:form, :any, required: true)
+      |> attr(:field, :any, required: true)
+      |> attr(:label, :string, default: humanize(assigns.field))
+      |> attr(:options, :any)
+      |> attr(:class, :string)
+      |> attr(:extra, :rest)
+      |> attr_done()
+
+    ~H"""
+    <div class={merge_class("space-y-2", @class)} {@extra}>
+      <%= case @type do %>
+        <% "text_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.text_input form={@form} field={@field} class="block w-full" />
+        <% "email_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.email_input form={@form} field={@field} class="block w-full" />
+        <% "number_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.number_input form={@form} field={@field} class="block w-full" />
+        <% "password_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.password_input form={@form} field={@field} class="block w-full" />
+        <% "url_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.url_input form={@form} field={@field} class="block w-full" />
+        <% "search_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.search_input form={@form} field={@field} class="block w-full" />
+        <% "telephone_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.telephone_input form={@form} field={@field} class="block w-full" />
+        <% "color_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.color_input form={@form} field={@field} />
+        <% "range_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.range_input form={@form} field={@field} class="block w-full" />
+        <% "time_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.time_input form={@form} field={@field} class="block w-full" />
+        <% "date_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.date_input form={@form} field={@field} class="block w-full" />
+        <% "datetime_local_input" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.datetime_local_input form={@form} field={@field} class="block w-full" />
+        <% "textarea" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.textarea form={@form} field={@field} class="block w-full" />
+        <% "checkbox" -> %>
+          <.input_label form={@form} field={@field} class="flex items-center">
+            <.checkbox form={@form} field={@field} />
+            <span class="ml-2"><%= @label %></span>
+          </.input_label>
+        <% "select" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.select form={@form} field={@field} options={@options} class="block w-full" />
+        <% "multiple_select" -> %>
+          <.input_label form={@form} field={@field}><%= @label %></.input_label>
+          <.multiple_select form={@form} field={@field} options={@options} class="block w-full" />
+      <% end %>
+
+      <.error form={@form} field={@field} />
+    </div>
+    """
   end
 end
