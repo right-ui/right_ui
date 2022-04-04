@@ -10,7 +10,10 @@ defmodule RightUI.Element.Button do
   def button(assigns) do
     assigns =
       assigns
-      |> attr(:type, :enum, values: ["button", "a", "live_patch", "live_redirect"], default: "a")
+      |> attr(:type, :enum,
+        values: ["submit", "button", "a", "live_patch", "live_redirect"],
+        default: "a"
+      )
       |> attr(:size, :enum, values: ["xs", "sm", "md", "lg", "xl"], default: "md")
       |> attr(:color, :enum,
         values: ["primary", "neutral", "info", "success", "warning", "danger"],
@@ -43,6 +46,7 @@ defmodule RightUI.Element.Button do
     """
   end
 
+  defp button_function("submit"), do: &Phoenix.HTML.Form.submit/2
   defp button_function("button"), do: &Phoenix.HTML.Link.button/2
   defp button_function("a"), do: &Phoenix.HTML.Link.link/2
   defp button_function("live_patch"), do: &live_patch/2
