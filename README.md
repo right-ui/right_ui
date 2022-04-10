@@ -38,6 +38,7 @@ Inspired by:
 - [Petal Components](https://github.com/petalframework/petal_components)
 - [MUI](https://mui.com/)
 - [Tailwind Elements](https://tailwind-elements.com/)
+- [DaisyUI](https://daisyui.com/)
 
 Built on:
 
