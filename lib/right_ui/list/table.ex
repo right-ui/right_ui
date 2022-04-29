@@ -24,7 +24,7 @@ defmodule RightUI.List.Table do
       |> attr_done()
 
     ~H"""
-    <div class="-my-2 overflow-x-auto">
+    <div class={merge_class(["-my-2 overflow-x-auto", @class])} {@extra}>
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
         <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
           <table class="min-w-full divide-y divide-neutral-300">
