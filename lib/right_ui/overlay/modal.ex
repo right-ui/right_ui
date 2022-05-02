@@ -55,8 +55,7 @@ defmodule RightUI.Overlay.Modal do
       x-data="{
         open: false,
         init: function() {
-          trigger = function() { this.open = true }
-          this.$nextTick(trigger.bind(this))
+          this.$nextTick(() => { this.open = true })
         }
       }"
       role="modal"
