@@ -1,10 +1,9 @@
 defmodule RightUI.Overlay.Modal do
   use RightUI, :component
-  alias Phoenix.LiveView.JS
 
   defmacro __using__(_) do
     quote do
-      import RightUI.Overlay.Modal, only: [modal: 1]
+      import RightUI.Overlay.Modal, only: [live_modal: 1]
     end
   end
 
@@ -17,7 +16,7 @@ defmodule RightUI.Overlay.Modal do
   ## Examples
 
   ```heex
-  <.modal return_to={Routes.unit_index_path(@socket, :index)}>
+  <.live_modal return_to={Routes.unit_index_path(@socket, :index)}>
     <.live_component
       module={AdminWeb.UnitLive.FormComponent}
       id={@unit.id || :new}
@@ -26,7 +25,7 @@ defmodule RightUI.Overlay.Modal do
       unit={@unit}
       return_to={Routes.unit_index_path(@socket, :index)}
     />
-  </.modal>
+  </.live_modal>
   ```
 
   ## Note
@@ -41,10 +40,10 @@ defmodule RightUI.Overlay.Modal do
   It's handled by `@alpinejs/focus v3.x`.
 
   """
-  def modal(assigns) do
+  def live_modal(assigns) do
     assigns =
       assigns
-      |> attr(:return_to, :string)
+      |> attr(:return_to, :string, required: true)
       |> attr(:class, :string)
       |> attr(:extra, :rest)
       |> attr_done()
@@ -96,16 +95,12 @@ defmodule RightUI.Overlay.Modal do
           phx-key="escape"
           phx-window-keydown={JS.dispatch("click", to: "#modal-close")}
         >
-          <%= if @return_to != "" do %>
-            <%= live_patch("",
-              to: @return_to,
-              id: "modal-close",
-              class: "hidden",
-              phx_click: hide_modal()
-            ) %>
-          <% else %>
-            <button type="button" id="modal-close" class="hidden" phx-click={hide_modal()}></button>
-          <% end %>
+          <%= live_patch("",
+            to: @return_to,
+            id: "modal-close",
+            class: "hidden",
+            phx_click: hide_modal()
+          ) %>
 
           <%= render_slot(@inner_block) %>
         </div>
