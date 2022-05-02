@@ -38,6 +38,7 @@ defmodule RightUI do
       use RightUI.Layout
       use RightUI.List
       use RightUI.Navigation
+      use RightUI.Overlay
     end
   end
 end
