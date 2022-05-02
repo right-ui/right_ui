@@ -59,6 +59,8 @@ defmodule RightUI.Helper do
   + `:boolean`
   + `:atom`
   + `:string`
+  + `:list`
+  + `:map`
   + `:function`
   + `:slot`
   + `:enum` with `:values` option
@@ -166,6 +168,8 @@ defmodule RightUI.Helper do
       is_boolean(term) -> :boolean
       is_binary(term) -> :string
       is_function(term) -> :function
+      is_map(term) -> :map
+      is_list(term) -> :list
       true -> :unknown
     end
   end
@@ -181,6 +185,8 @@ defmodule RightUI.Helper do
       :number -> 0
       :boolean -> false
       :string -> ""
+      :map -> %{}
+      :list -> []
       _ -> nil
     end
   end
