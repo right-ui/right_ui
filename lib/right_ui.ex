@@ -6,6 +6,7 @@ defmodule RightUI do
   def component do
     quote do
       use Phoenix.Component
+      alias Phoenix.LiveView.JS
 
       unquote(view_helpers())
     end
@@ -14,6 +15,7 @@ defmodule RightUI do
   def live_component do
     quote do
       use Phoenix.LiveComponent
+      alias Phoenix.LiveView.JS
 
       unquote(view_helpers())
     end
