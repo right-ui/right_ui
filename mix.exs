@@ -22,8 +22,7 @@ defmodule RightUI.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:phoenix_live_view,
-       github: "phoenixframework/phoenix_live_view", ref: "e9d41cb", override: true},
+      {:phoenix_live_view, "~> 0.17.9"},
       {:adept_svg, "~> 0.3.1"}
     ]
   end
