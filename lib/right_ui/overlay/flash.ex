@@ -14,14 +14,14 @@ defmodule RightUI.Overlay.Flash do
   ## Example
 
   ```heex
-  <.flash class="container pt-6" store={@flash} />
+  <.flash flash={@flash} class="container pt-6" />
   ```
 
   """
   def flash(assigns) do
     assigns =
       assigns
-      |> attr(:store, :map, required: true)
+      |> attr(:flash, :map, required: true)
       |> attr(:class, :string)
       |> attr(:extra, :rest)
       |> attr_done()
@@ -33,9 +33,9 @@ defmodule RightUI.Overlay.Flash do
         pointer-events-none
         #{@class}
       )}>
-      <%= render_flash(@store, :info) %>
-      <%= render_flash(@store, :success) %>
-      <%= render_flash(@store, :error) %>
+      <%= render_flash(@flash, :info) %>
+      <%= render_flash(@flash, :success) %>
+      <%= render_flash(@flash, :error) %>
     </div>
     """
   end
@@ -62,8 +62,8 @@ defmodule RightUI.Overlay.Flash do
         x-show="open"
         x-description={"#{key} message"}
         x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 transform -translate-y-2 sm:translate-y-0 sm:translate-x-2"
-        x-transition:enter-end="opacity-100 transform translate-y-0 sm:translate-x-0"
+        x-transition:enter-start="opacity-0 -translate-y-2 sm:translate-y-0 sm:translate-x-2"
+        x-transition:enter-end="opacity-100 translate-y-0 sm:translate-x-0"
         class="max-w-sm w-full bg-white shadow-lg rounded-lg ring-1 ring-black ring-opacity-5 overflow-hidden pointer-events-auto"
       >
         <div class="flex items-start p-4">
@@ -103,8 +103,8 @@ defmodule RightUI.Overlay.Flash do
     |> JS.hide(
       transition: {
         "transition ease-in duration-300",
-        "opacity-100",
-        "opacity-0"
+        "opacity-100 scale-100",
+        "opacity-0 scale-95"
       },
       time: 300,
       to: "##{flash_id(key)}"
