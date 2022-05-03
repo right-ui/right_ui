@@ -230,16 +230,16 @@ defmodule RightUI.Element.Form do
     """
   end
 
-  @class_default one_line_class("""
-                 px-3 py-2
-                 text-base sm:text-sm
-                 bg-white rounded-md shadow-sm border border-neutral-300
-                 focus:outline-none focus:border-primary-400 focus:ring focus:ring-offset-0 focus:ring-primary-300 focus:ring-opacity-50
-                 transition ease-in-out duration-150
-                 phx-form-error:text-danger-900
-                 phx-form-error:border-danger-400
-                 phx-form-error:focus:border-danger-400 phx-form-error:focus:ring-danger-300 phx-form-error:focus:ring-opacity-50
-                 """)
+  @class_default ~m"""
+  px-3 py-2
+  text-base sm:text-sm
+  bg-white rounded-md shadow-sm border border-neutral-300
+  focus:outline-none focus:border-primary-400 focus:ring focus:ring-offset-0 focus:ring-primary-300 focus:ring-opacity-50
+  transition ease-in-out duration-150
+  phx-form-error:text-danger-900
+  phx-form-error:border-danger-400
+  phx-form-error:focus:border-danger-400 phx-form-error:focus:ring-danger-300 phx-form-error:focus:ring-opacity-50
+  """
 
   defp class_form_error(form, field),
     do: if(has_error?(form, field), do: "phx-form-error", else: "")
@@ -247,16 +247,15 @@ defmodule RightUI.Element.Form do
   defp class_default(:color_input), do: merge_class([@class_default, "h-10"])
 
   defp class_default(:file_input),
-    do:
-      one_line_class("""
-      text-sm text-neutral-500
-      file:mr-4 file:px-4 file:py-2
-      file:rounded-md file:border-0
-      file:text-sm file:font-semibold
-      file:bg-primary-50 file:text-primary-600
-      hover:file:bg-primary-100
-      focus:outline-none
-      """)
+    do: ~m"""
+    text-sm text-neutral-500
+    file:mr-4 file:px-4 file:py-2
+    file:rounded-md file:border-0
+    file:text-sm file:font-semibold
+    file:bg-primary-50 file:text-primary-600
+    hover:file:bg-primary-100
+    focus:outline-none
+    """
 
   defp class_default(:range_input), do: ""
 
@@ -333,7 +332,7 @@ defmodule RightUI.Element.Form do
       |> attr_done()
 
     ~H"""
-    <div class={merge_class("space-y-2", @class)} {@extra}>
+    <div class={merge_class(["space-y-2", @class])} {@extra}>
       <%= case @type do %>
         <% "text_input" -> %>
           <.input_label form={@form} field={@field}><%= @label %></.input_label>

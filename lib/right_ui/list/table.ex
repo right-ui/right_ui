@@ -80,7 +80,7 @@ defmodule RightUI.List.Table do
       |> attr_done()
 
     ~H"""
-    <tr class={merge_class(tr_class(@striped), @class)} {@extra}>
+    <tr class={merge_class([tr_class(@striped), @class])} {@extra}>
       <%= render_slot(@inner_block) %>
     </tr>
     """

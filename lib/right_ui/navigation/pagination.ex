@@ -101,32 +101,31 @@ defmodule RightUI.Navigation.Pagination do
     """
   end
 
-  @class_shared one_line_class("""
-                relative inline-flex items-center py-2
-                border text-sm font-medium
+  @class_shared ~m"""
+  relative inline-flex items-center py-2
+  border text-sm font-medium
+  """
 
-                """)
+  @class_color_active ~m"""
+  z-10
+  bg-primary-50
+  border-primary-500 text-primary-600
+  first:rounded-l-md last:rounded-r-md
+  """
 
-  @class_color_active one_line_class("""
-                      z-10
-                      bg-primary-50
-                      border-primary-500 text-primary-600
-                      first:rounded-l-md last:rounded-r-md
-                      """)
+  @class_color_inactive ~m"""
+  bg-white
+  border-neutral-300
+  text-neutral-500 hover:bg-neutral-50
+  first:rounded-l-md last:rounded-r-md
+  """
 
-  @class_color_inactive one_line_class("""
-                        bg-white
-                        border-neutral-300
-                        text-neutral-500 hover:bg-neutral-50
-                        first:rounded-l-md last:rounded-r-md
-                        """)
-
-  @class_simple one_line_class("""
-                bg-white
-                border-neutral-300
-                text-neutral-700 hover:bg-neutral-50
-                rounded-md
-                """)
+  @class_simple ~m"""
+  bg-white
+  border-neutral-300
+  text-neutral-700 hover:bg-neutral-50
+  rounded-md
+  """
 
   defp class_simple(), do: "#{@class_shared} #{@class_simple} px-4"
 

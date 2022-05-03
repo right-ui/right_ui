@@ -24,6 +24,7 @@ defmodule RightUI do
   defp view_helpers do
     quote do
       import RightUI.Helper
+      import RightUI.Sigil
     end
   end
 

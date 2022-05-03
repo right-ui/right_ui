@@ -82,13 +82,11 @@ defmodule RightUI.Overlay.Modal do
       >
         <div
           id="modal-panel"
-          class={
-            merge_class([
-              "relative bg-white rounded-lg shadow-lg  shadow-xl overflow-y-auto",
-              "align-bottom px-4 pt-5 pb-4",
-              "sm:align-middle sm:max-w-xl sm:w-full sm:p-6 sm:my-8"
-            ])
-          }
+          class={~m(
+            relative bg-white rounded-lg shadow-lg shadow-xl overflow-y-auto
+            align-bottom px-4 pt-5 pb-4
+            sm:align-middle sm:max-w-xl sm:w-full sm:p-6 sm:my-8
+          )}
           x-trap.noscroll.inert="open"
           phx-click-away={JS.dispatch("click", to: "#modal-close")}
           phx-key="escape"

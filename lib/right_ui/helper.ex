@@ -236,30 +236,11 @@ defmodule RightUI.Helper do
     end
   end
 
-  @doc """
-  """
-  def merge_class(old, new) do
-    merge_as_simple_value([old, new])
-  end
-
   def merge_class(list) do
-    merge_as_simple_value(list)
-  end
-
-  defp merge_as_simple_value(list) when is_list(list) do
     list
     |> Enum.map(&String.trim/1)
     |> Enum.join(" ")
     |> String.trim()
-  end
-
-  @doc """
-  Remove whitespaces from a class string.
-  """
-  def one_line_class(class) do
-    class
-    |> String.split(~r/\s+/)
-    |> Enum.join(" ")
   end
 
   # # Currently, this isn't work as expected, I will handle it later.
