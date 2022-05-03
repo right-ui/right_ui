@@ -180,14 +180,29 @@ defmodule RightUI.Helper do
 
   defp default_of(type) do
     case type do
-      :integer -> 0
-      :float -> 0.0
-      :number -> 0
-      :boolean -> false
-      :string -> ""
-      :map -> %{}
-      :list -> []
-      _ -> nil
+      :integer ->
+        0
+
+      :float ->
+        0.0
+
+      :number ->
+        0
+
+      :boolean ->
+        false
+
+      :string ->
+        ""
+
+      :map ->
+        %{}
+
+      :list ->
+        []
+
+      _ ->
+        nil
     end
   end
 
