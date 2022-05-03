@@ -20,6 +20,36 @@ defmodule RightUI.AttrError do
   end
 end
 
+defmodule RightUI.Sigil do
+  @doc ~S"""
+  Merge multiple classes as a formatted string.
+
+  In your code, it allows wrapping long classes like this:
+
+  ```elixir
+  ~m"
+    fixed inset-0 pt-6 px-6 space-y-4
+    flex flex-col items-center sm:items-end
+    pointer-events-none
+  "
+  ```
+
+  Then, It will be processed as:
+
+  ```elixir
+  "fixed inset-0 pt-6 px-6 space-y-4 flex flex-col items-center sm:items-end pointer-events-none"
+  ```
+
+  """
+
+  defmacro sigil_m(term, modifiers) do
+    quote do
+      Kernel.sigil_w(unquote(term), unquote(modifiers))
+      |> Enum.join(" ")
+    end
+  end
+end
+
 defmodule RightUI.Helper do
   import Phoenix.LiveView, only: [assign: 3, assign_new: 3]
   import Phoenix.LiveView.Helpers, only: [assigns_to_attributes: 2]
