@@ -39,6 +39,7 @@ Inspired by:
 - [MUI](https://mui.com/)
 - [Tailwind Elements](https://tailwind-elements.com/)
 - [DaisyUI](https://daisyui.com/)
+- [Headless UI](https://headlessui.dev/)
 
 Built on:
 
