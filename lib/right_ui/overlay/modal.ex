@@ -3,7 +3,7 @@ defmodule RightUI.Overlay.Modal do
 
   defmacro __using__(_) do
     quote do
-      import RightUI.Overlay.Modal, only: [live_modal: 1]
+      import RightUI.Overlay.Modal, only: [modal: 1]
     end
   end
 
@@ -16,7 +16,7 @@ defmodule RightUI.Overlay.Modal do
   ## Examples
 
   ```heex
-  <.live_modal return_to={Routes.unit_index_path(@socket, :index)}>
+  <.modal return_to={Routes.unit_index_path(@socket, :index)}>
     <.live_component
       module={AdminWeb.UnitLive.FormComponent}
       id={@unit.id || :new}
@@ -25,7 +25,7 @@ defmodule RightUI.Overlay.Modal do
       unit={@unit}
       return_to={Routes.unit_index_path(@socket, :index)}
     />
-  </.live_modal>
+  </.modal>
   ```
 
   ## Note
@@ -40,7 +40,7 @@ defmodule RightUI.Overlay.Modal do
   It's handled by `@alpinejs/focus v3.x`.
 
   """
-  def live_modal(assigns) do
+  def modal(assigns) do
     assigns =
       assigns
       |> attr(:return_to, :string, required: true)
