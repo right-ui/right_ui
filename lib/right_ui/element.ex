@@ -4,7 +4,8 @@ defmodule RightUI.Element do
       import RightUI.Element.{
         Button,
         Link,
-        Form
+        Form,
+        Dropdown
       }
     end
   end
