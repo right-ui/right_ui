@@ -11,20 +11,17 @@ defmodule RightUI.Element.Toggle do
     assigns =
       assigns
       |> attr(:id, :string, default: "toggle")
-      |> attr(:label_id, :string, default: "toggle-label")
       |> attr(:value, :boolean, required: true)
+      |> attr(:label, :slot, required: true)
       |> attr(:event_name, :string, default: "toggle")
+      |> attr(:class, :string, default: "flex items-center")
       |> attr(:extra, :rest)
       |> attr_done()
 
     ~H"""
-    <div id={@id} class="flex items-center">
-      <label
-        id={@label_id}
-        phx-click={toggle_value(@event_name, assigns)}
-        class="text-black transition-colors dark:text-white"
-      >
-        Send notifications
+    <div id={@id} class={@class}>
+      <label id={"#{@id}-label"} phx-click={toggle_value(@event_name, assigns)}>
+        <%= render_slot(@label) %>
       </label>
       <button
         type="button"
@@ -39,7 +36,7 @@ defmodule RightUI.Element.Toggle do
         phx-throttle="300"
         phx-click={toggle_value(@event_name, assigns)}
         aria-checked={@value}
-        aria-labelledby={@label_id}
+        aria-labelledby={"#{@id}-label"}
       >
         <span class={~m"
             w-6 h-6 rounded-full bg-white
