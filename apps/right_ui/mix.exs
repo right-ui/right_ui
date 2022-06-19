@@ -33,6 +33,7 @@ defmodule RightUI.MixProject do
 
   defp aliases do
     [
+      setup: ["deps.get"],
       "sync.heroicons": [
         "cmd mkdir -p priv/icons",
         "cmd npm install heroicons --prefix priv/icons"
