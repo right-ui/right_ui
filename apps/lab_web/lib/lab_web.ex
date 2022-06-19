@@ -31,7 +31,8 @@ defmodule LabWeb do
     quote do
       use Phoenix.View,
         root: "lib/lab_web/templates",
-        namespace: LabWeb
+        namespace: LabWeb,
+        pattern: "**/*"
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -98,6 +99,9 @@ defmodule LabWeb do
       import LabWeb.ErrorHelpers
       import LabWeb.Gettext
       alias LabWeb.Router.Helpers, as: Routes
+
+      use RightUI
+      import LabWeb.PreviewComponent
     end
   end
 

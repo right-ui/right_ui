@@ -37,6 +37,7 @@ defmodule Lab.MixProject do
   defp deps do
     [
       {:phoenix_pubsub, "~> 2.0"},
+      {:ecto, "~> 3.7.2"},
       {:swoosh, "~> 1.3"}
     ]
   end

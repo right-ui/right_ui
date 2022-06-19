@@ -1,0 +1,107 @@
+<div class="space-y-20">
+  <.preview title="link_type - a">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination link_type="a" fn_path={&"/posts/#{&1}"} total_pages={10} current_page={1} />
+    </.container>
+  </.preview>
+
+  <.preview title="link_type - live_patch">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination
+        link_type="live_patch"
+        fn_path={&"/posts/#{&1}"}
+        total_pages={10}
+        current_page={1}
+      />
+    </.container>
+  </.preview>
+
+  <.preview title="link_type - live_redirect">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination
+        link_type="live_redirect"
+        fn_path={&"/posts/#{&1}"}
+        total_pages={10}
+        current_page={1}
+      />
+    </.container>
+  </.preview>
+
+  <.preview title="sibling_count - 3">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination
+        link_type="a"
+        fn_path={&"/posts/#{&1}"}
+        total_pages={10}
+        current_page={1}
+        sibling_count={3}
+      />
+    </.container>
+  </.preview>
+
+  <.preview title="type - simple | 1 / 10">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination
+        type="simple"
+        link_type="a"
+        fn_path={&"/posts/#{&1}"}
+        total_pages={10}
+        current_page={1}
+      />
+    </.container>
+  </.preview>
+
+  <.preview title="type - simple | 5 / 10">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination
+        type="simple"
+        link_type="a"
+        fn_path={&"/posts/#{&1}"}
+        total_pages={10}
+        current_page={5}
+      />
+    </.container>
+  </.preview>
+
+  <.preview title="type - simple | 10 / 10">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination
+        type="simple"
+        link_type="a"
+        fn_path={&"/posts/#{&1}"}
+        total_pages={10}
+        current_page={10}
+      />
+    </.container>
+  </.preview>
+
+  <.preview title="type - full | 1 / 10">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination link_type="a" fn_path={&"/posts/#{&1}"} total_pages={10} current_page={1} />
+    </.container>
+  </.preview>
+
+  <.preview title="type - full | 3 / 10">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination link_type="a" fn_path={&"/posts/#{&1}"} total_pages={10} current_page={3} />
+    </.container>
+  </.preview>
+
+  <.preview title="type - full | 5 / 10">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination link_type="a" fn_path={&"/posts/#{&1}"} total_pages={10} current_page={5} />
+    </.container>
+  </.preview>
+
+  <.preview title="type - full | 8 / 10">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination link_type="a" fn_path={&"/posts/#{&1}"} total_pages={10} current_page={8} />
+    </.container>
+  </.preview>
+
+  <.preview title="type - full | 10 / 10">
+    <.container class="py-10 space-y-4 flex justify-center">
+      <.pagination link_type="a" fn_path={&"/posts/#{&1}"} total_pages={10} current_page={10} />
+    </.container>
+  </.preview>
+</div>

@@ -1,0 +1,147 @@
+<div class="space-y-20">
+  <.preview title="Full-width on mobile, constrained with padded content above">
+    <.container class="py-10 space-y-4">
+      <h1>Users</h1>
+
+      <.container reverse={true}>
+        <.table>
+          <.thead>
+            <.tr>
+              <.th position="first">Name</.th>
+              <.th>Title</.th>
+              <.th>Email</.th>
+              <.th>Role</.th>
+              <.th position="last">
+                <span class="sr-only">Edit</span>
+              </.th>
+            </.tr>
+          </.thead>
+          <.tbody>
+            <.tr>
+              <.td position="first" class="font-medium !text-neutral-900">Lindsay Walton</.td>
+              <.td>Front-end Developer</.td>
+              <.td>lindsay.walton@example.com</.td>
+              <.td>Member</.td>
+              <.td position="last">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  Edit<span class="sr-only">, Lindsay Walton</span>
+                </a>
+              </.td>
+            </.tr>
+            <.tr>
+              <.td position="first" class="font-medium !text-neutral-900">Courtney Henry</.td>
+              <.td>Designer</.td>
+              <.td>courtney.henry@example.com</.td>
+              <.td>Admin</.td>
+              <.td position="last">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  Edit<span class="sr-only">, Lindsay Walton</span>
+                </a>
+              </.td>
+            </.tr>
+            <.tr>
+              <.td position="first" class="font-medium !text-neutral-900">Tom Cook</.td>
+              <.td>Director, Product Development</.td>
+              <.td>tom.cook@example.com</.td>
+              <.td>Member</.td>
+              <.td position="last">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  Edit<span class="sr-only">, Lindsay Walton</span>
+                </a>
+              </.td>
+            </.tr>
+            <.tr>
+              <.td position="first" class="font-medium !text-neutral-900">Whitney Francis</.td>
+              <.td>Copywriter</.td>
+              <.td>whitney.francis@example.com</.td>
+              <.td>Admin</.td>
+              <.td position="last">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                    Edit<span class="sr-only">, Lindsay Walton</span>
+                  </a>
+                  <span class="sr-only">, Lindsay Walton</span>
+                </a>
+              </.td>
+            </.tr>
+          </.tbody>
+        </.table>
+      </.container>
+    </.container>
+  </.preview>
+
+  <.preview
+    title="Full-width on mobile, constrained with padded content above (with striped rows)"
+  >
+    <.container class="py-10 space-y-4">
+      <p>A list of users</p>
+
+      <.container reverse={true}>
+        <.table>
+          <.thead>
+            <.tr>
+              <.th position="first">Name</.th>
+              <.th>Title</.th>
+              <.th>Email</.th>
+              <.th>Role</.th>
+              <.th position="last">
+                <span class="sr-only">Edit</span>
+              </.th>
+            </.tr>
+          </.thead>
+          <.tbody divide={false}>
+            <.tr striped={true}>
+              <.td position="first" class="font-medium !text-neutral-900">Lindsay Walton</.td>
+              <.td>Front-end Developer</.td>
+              <.td>lindsay.walton@example.com</.td>
+              <.td>Member</.td>
+              <.td position="last">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  Edit<span class="sr-only">, Lindsay Walton</span>
+                </a>
+              </.td>
+            </.tr>
+            <.tr striped={true}>
+              <.td position="first" class="font-medium !text-neutral-900">Courtney Henry</.td>
+              <.td>Designer</.td>
+              <.td>courtney.henry@example.com</.td>
+              <.td>Admin</.td>
+              <.td position="last">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  Edit<span class="sr-only">, Lindsay Walton</span>
+                </a>
+              </.td>
+            </.tr>
+            <.tr striped={true}>
+              <.td position="first" class="font-medium !text-neutral-900">Tom Cook</.td>
+              <.td>Director, Product Development</.td>
+              <.td>tom.cook@example.com</.td>
+              <.td>Member</.td>
+              <.td position="last">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  Edit<span class="sr-only">, Lindsay Walton</span>
+                </a>
+              </.td>
+            </.tr>
+            <.tr striped={true}>
+              <.td position="first" class="font-medium !text-neutral-900">Whitney Francis</.td>
+              <.td>Copywriter</.td>
+              <.td>whitney.francis@example.com</.td>
+              <.td>Admin</.td>
+              <.td position="last">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                    Edit<span class="sr-only">, Lindsay Walton</span>
+                  </a>
+                  <span class="sr-only">, Lindsay Walton</span>
+                </a>
+              </.td>
+            </.tr>
+          </.tbody>
+        </.table>
+      </.container>
+    </.container>
+  </.preview>
+
+  <p>Go to TailwindUI for more variants.</p>
+</div>

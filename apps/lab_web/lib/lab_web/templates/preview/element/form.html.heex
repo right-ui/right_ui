@@ -1,0 +1,73 @@
+<.preview_container>
+  <.preview title="label">
+    <div class="px-4 py-8 bg-white">
+      <.form let={f} for={@changeset} as="user" multipart>
+        <.input_label form={f} field={:name}>A label</.input_label>
+      </.form>
+    </div>
+  </.preview>
+
+  <.preview title="input">
+    <div class="px-4 py-8 bg-white">
+      <.form let={f} for={@changeset} as="user" multipart class="space-y-2">
+        <div>
+          <.input_label form={f} field={:name}>normal input</.input_label>
+          <.text_input form={f} field={:name} />
+        </div>
+
+        <div>
+          <.input_label form={f} field={:name}>error input</.input_label>
+          <.text_input form={f} field={:age} />
+          <.error form={f} field={:age} />
+        </div>
+      </.form>
+    </div>
+  </.preview>
+
+  <.preview title="input">
+    <div class="px-4 py-8 bg-white">
+      <.form let={f} for={@changeset} as="user" multipart class="space-y-2">
+        <.input_label form={f} field={:date}>date input</.input_label>
+        <.date_input form={f} field={:date} />
+
+        <.input_label form={f} field={:datetime_local}>datetime local input</.input_label>
+        <.datetime_local_input form={f} field={:datetime_local} />
+
+        <.input_label form={f} field={:color}>color input</.input_label>
+        <.color_input form={f} field={:color} />
+
+        <.input_label form={f} field={:file}>file input</.input_label>
+        <.file_input form={f} field={:file} />
+
+        <.input_label form={f} field={:range}>range input</.input_label>
+        <.range_input form={f} field={:range} />
+
+        <.input_label form={f} field={:text}>textarea</.input_label>
+        <.textarea form={f} field={:text} />
+
+        <p>select:</p>
+        <.select form={f} field={:sex} options={[:male, :female]} />
+
+        <p>multiple_select:</p>
+        <.multiple_select form={f} field={:animals} options={[:dog, :cat, :pig]} />
+
+        <h2 class="mt-8 text-lg font-medium">checkbox</h2>
+        <.input_label>
+          Is this allowed?
+          <.checkbox form={f} field={:allowed?} />
+        </.input_label>
+      </.form>
+    </div>
+  </.preview>
+
+  <.preview title="form_field">
+    <div class="px-4 py-8 bg-white">
+      <.form let={f} for={@changeset} as="user" multipart class="space-y-2">
+        <.form_field type="text_input" form={f} field={:name} />
+        <.form_field type="number_input" form={f} field={:age} />
+        <.form_field type="checkbox" form={f} field={:allowed?} />
+        <.form_field type="select" form={f} field={:animals} options={[:dog, :cat, :pig]} />
+      </.form>
+    </div>
+  </.preview>
+</.preview_container>

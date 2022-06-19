@@ -1,0 +1,34 @@
+<div class="prose">
+  <h1>The List of Components</h1>
+
+  <ul>
+    <%= for path <- [
+    ["element", "button"],
+    ["element", "toggle"],
+    ["element", "link"],
+    ["element", "form"],
+    ["icon", "heroicon"],
+    ["layout", "container"],
+    ["list", "table"],
+    ["navigation", "pagination"]
+  ] do %>
+      <li>
+        <a href={Routes.preview_path(@conn, :show, path)} target="_blank">
+          <%= Enum.join(path, " / ") %>
+        </a>
+      </li>
+    <% end %>
+
+    <li>
+      <a href={Routes.preview_modal_path(@conn, :index)} target="_blank">
+        overlay / modal
+      </a>
+    </li>
+
+    <li>
+      <a href={Routes.preview_flash_path(@conn, :index)} target="_blank">
+        overlay / flash
+      </a>
+    </li>
+  </ul>
+</div>

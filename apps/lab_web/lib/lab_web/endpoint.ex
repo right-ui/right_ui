@@ -7,7 +7,7 @@ defmodule LabWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_lab_web_key",
-    signing_salt: "gaAdTfXm"
+    signing_salt: "RfmPciJt"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]

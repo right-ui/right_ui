@@ -1,0 +1,29 @@
+<div class="space-y-20">
+  <.preview title="Outline icons and Solid icons have different default size">
+    <.container class="py-10 space-x-8 flex items-center">
+      <.heroicon name="outline/chip" />
+      <.heroicon name="solid/chip" />
+    </.container>
+  </.preview>
+
+  <.preview title="Use :class for adding more classes without changing the default size">
+    <.container class="py-10 space-x-8 flex items-center">
+      <.heroicon name="outline/chip" class="stroke-red-500" />
+      <.heroicon name="solid/chip" class="fill-red-500" />
+    </.container>
+  </.preview>
+
+  <.preview title="Use :enable_default_size for toggling default size">
+    <.container class="py-10 space-x-8 flex items-center">
+      <.heroicon name="outline/chip" class="w-8 h-8" enable_default_size={false} />
+      <.heroicon name="solid/chip" class="w-6 h-6" enable_default_size={false} />
+    </.container>
+  </.preview>
+
+  <.preview title="Support arbitrary classes">
+    <.container class="py-10 space-x-8 flex items-center">
+      <.heroicon name="outline/chip" class="hover:stroke-2 hover:stroke-red-500" />
+      <.heroicon name="solid/chip" class="hover:fill-red-500" />
+    </.container>
+  </.preview>
+</div>

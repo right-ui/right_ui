@@ -18,6 +18,17 @@ defmodule LabWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    get "/preview", PreviewController, :index
+
+    live "/preview/modal", PreviewModalLive, :index
+    live "/preview/modal/popup", PreviewModalLive, :popup
+
+    live "/preview/toggle", PreviewToggleLive, :index
+
+    live "/preview/flash", PreviewFlashLive, :index
+
+    get "/preview/*path", PreviewController, :show
   end
 
   # Other scopes may use custom stacks.

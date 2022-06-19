@@ -1,0 +1,42 @@
+<.preview_container>
+  <.preview title="Full-width on mobile, constrained with padded content above">
+    <!-- max-w-7xl mx-auto bg-pink-100 sm:px-6 lg:px-8 -->
+    <.container class="max-w-7xl mx-auto bg-pink-100" padding_from="sm">
+      <.box />
+    </.container>
+  </.preview>
+
+  <.preview title="Constrained with padded content">
+    <!-- max-w-7xl mx-auto bg-pink-100 px-4 sm:px-6 lg:px-8 -->
+    <.container class="max-w-7xl mx-auto bg-pink-100">
+      <.box />
+    </.container>
+  </.preview>
+
+  <.preview
+    title="Full-width on mobile, constrained to breakpoint with padded content above mobile"
+  >
+    <!-- container mx-auto bg-pink-100 sm:px-6 lg:px-8 -->
+    <.container class="mx-auto bg-pink-100" padding_from="sm" breakpoint={true}>
+      <.box />
+    </.container>
+  </.preview>
+
+  <.preview title="Constrained to breakpoint with padded content above mobile">
+    <!-- container mx-auto bg-pink-100 px-4 sm:px-6 lg:px-8 -->
+    <.container class="mx-auto bg-pink-100" padding_from="xs" breakpoint={true}>
+      <.box />
+    </.container>
+  </.preview>
+
+  <.preview title="Narrow constrained with padded content">
+    <!-- max-w-7xl mx-auto bg-pink-100 px-4 sm:px-6 lg:px-8 -->
+    <.container class="max-w-7xl mx-auto bg-pink-100" padding_from="xs">
+      <div class="bg-white">
+        <div class="max-w-3xl mx-auto">
+          <.box />
+        </div>
+      </div>
+    </.container>
+  </.preview>
+</.preview_container>

@@ -1,0 +1,53 @@
+<.preview_container>
+  <.preview title="dropdown">
+    <div class="px-4 py-8 h-96 bg-white">
+      <div class="flex justify-end">
+        <.dropdown panel_position={[:right]}>
+          <:trigger>
+            <div class="border border-black px-4 py-2 focus:outline-none focus-ring-4 focus:ring-aqua-400">
+              <span>Actions</span>
+              <span aria-hidden="true">&darr;</span>
+            </div>
+          </:trigger>
+          <div class="mt-2 bg-white border border-black">
+            <div>
+              <a
+                href="#"
+                class="block w-full px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500 whitespace-nowrap"
+              >
+                Add task above
+              </a>
+
+              <a
+                href="#"
+                class="block w-full px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500 whitespace-nowrap"
+              >
+                Add task below
+              </a>
+            </div>
+
+            <div class="border-t border-gray-200">
+              <a
+                href="#"
+                class="block w-full px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500 whitespace-nowrap"
+              >
+                Edit task
+              </a>
+
+              <a
+                href="#"
+                disabled
+                class="block w-full px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500 whitespace-nowrap"
+              >
+                Delete task
+              </a>
+            </div>
+          </div>
+        </.dropdown>
+      </div>
+
+      <button>Button A</button>
+      <button>Button B</button>
+    </div>
+  </.preview>
+</.preview_container>
