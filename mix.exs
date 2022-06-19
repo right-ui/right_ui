@@ -1,4 +1,4 @@
-defmodule Lab.Umbrella.MixProject do
+defmodule RightUI.Umbrella.MixProject do
   use Mix.Project
 
   def project do
