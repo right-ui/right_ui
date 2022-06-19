@@ -5,7 +5,8 @@ defmodule RightUI.Element do
         Button,
         Link,
         Form,
-        Dropdown
+        Dropdown,
+        Toggle
       }
     end
   end
