@@ -21,9 +21,18 @@ defmodule LabWeb.PreviewModalLive do
 
     <%= if @live_action in [:popup] do %>
       <.modal return_to={Routes.preview_modal_path(@socket, :index)}>
-        <p class="text-center">Hello World</p>
+        <p class="text-center">Hello World, modal!</p>
       </.modal>
     <% end %>
+
+    <.inline_modal>
+      <:trigger>
+        Click to open a modal via `inline_modal`
+      </:trigger>
+      <div class="bg-white px-4">
+        <p class="text-center">Hello World, inline_modal!</p>
+      </div>
+    </.inline_modal>
     """
   end
 end

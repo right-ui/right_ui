@@ -3,7 +3,7 @@ defmodule RightUI.Overlay.Modal do
 
   defmacro __using__(_) do
     quote do
-      import RightUI.Overlay.Modal, only: [modal: 1]
+      import RightUI.Overlay.Modal, only: [modal: 1, inline_modal: 1]
     end
   end
 
@@ -126,5 +126,63 @@ defmodule RightUI.Overlay.Modal do
       time: 150,
       to: "#modal-panel"
     )
+  end
+
+  def inline_modal(assigns) do
+    assigns =
+      assigns
+      |> attr(:trigger, :slot, required: true)
+      |> attr_done()
+
+    ~H"""
+    <div x-data="{ open: false }">
+      <button x-on:click="open = ! open">
+        <%= render_slot(@trigger) %>
+      </button>
+
+      <template x-teleport="body" x-on:click="open = false">
+        <div
+          x-cloak
+          x-show="open"
+          x-on:keydown.escape.prevent.stop="open = false"
+          role="dialog"
+          aria-modal="true"
+          class="fixed inset-0 z-10 overflow-y-auto"
+        >
+          <div
+            x-show="open"
+            x-transition:enter="transition ease-out duration-150"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-out duration-150"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 bg-black/50"
+          >
+          </div>
+
+          <div
+            x-show="open"
+            x-on:click="open = false"
+            x-transition:enter="transition ease-out duration-150"
+            x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-out duration-150"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-90"
+            class="relative min-h-screen flex items-center justify-center p-4"
+          >
+            <div x-on:click.stop x-trap.noscroll.inert="open" class={~m(
+                relative bg-white rounded-lg shadow-lg shadow-xl overflow-y-auto
+                align-bottom px-4 pt-5 pb-4
+                sm:align-middle sm:max-w-xl sm:w-full sm:p-6 sm:my-8
+            )}>
+              <%= render_slot(@inner_block) %>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+    """
   end
 end
